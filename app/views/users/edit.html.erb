@@ -1,0 +1,14 @@
+<h1>Users Plofile Edit</h1>
+
+<%= form_tag("/users/#{@current_user.id}",method: :patch) do %>
+  <%= label_tag "form-name","Name" %>
+  <%= text_field :users,:name, id:"form-name",class:"form-control",placeholder:"name",value: @current_user.name%>
+
+  <%= label_tag "form-email","E-mail" %>
+  <%= email_field :users,:email, id:"form-email",class:"form-control",placeholder:"email",value: @current_user.email %>
+
+  <%= label_tag "form-password","Password" %>
+  <%= password_field :users,:password, id:"form-password",class:"form-control",placeholder:"password",value: @current_user.password %>
+
+  <%= submit_tag "create",class:"btn btn-primary" %>
+<% end %>

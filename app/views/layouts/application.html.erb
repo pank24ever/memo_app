@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MemosApp</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button><% if @current_user %>
+          <%= link_to("Memo`s App","/memos/index",class:"navbar-brand") %>
+        <% else %>
+          <%= link_to("Memo`s App","/",class:"navbar-brand") %>
+        <% end %>
+      </div>
+      
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <% if @current_user %>
+            <li><%= link_to("Edit #{@current_user.name}`s Plofile", "/users/#{@current_user.id}/show") %></li>  
+
+            <li><%= link_to("Create","/new") %></li>
+            <li><%= link_to("Logout", "/logout", {method: :post}) %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categroy<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <% @categories.each do |category| %>
+                    <li>
+                      <a href="/categories/<%= category.id %>">
+                        <%= category.name %>
+                      </a>
+                    </li>
+                  <% end %>
+              </ul>
+            </li>
+          <% else %>
+            <li><%= link_to("Signup","/signup") %></li>
+            <li><%= link_to("Login","/loginform") %></li>
+          <% end %>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <% if flash[:notice] %>
+      <div class="alert alert-warning">
+        <%= flash[:notice] %>
+      </div>
+  <% end %>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+</body>
+</html>

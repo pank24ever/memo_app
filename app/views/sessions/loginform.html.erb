@@ -1,0 +1,12 @@
+<%= form_tag("/login",method: :post) do %>
+  <%= label_tag "form-name","Name" %>
+  <%= text_field :users,:name, id:"form-name",class:"form-control",placeholder:"name"%>
+
+  <%= label_tag "form-email","E-mail" %>
+  <%= email_field :users,:email, id:"form-email",class:"form-control",placeholder:"email" %>
+
+  <%= label_tag "form-password","Password" %>
+  <%= password_field :users,:password, id:"form-password",class:"form-control",placeholder:"password" %>
+
+  <%= submit_tag "create",class:"btn btn-primary" %>
+<% end %>

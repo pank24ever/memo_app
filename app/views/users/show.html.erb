@@ -1,0 +1,17 @@
+<div class="center">
+  <h1>
+    Plofile detail
+  </h1>
+
+  <h4 class="inline">User Name:</h4>
+  <h3 class="inline-block">
+    <%= @current_user.name %>
+  </h3>
+  <br>
+  <h4 class="inline">User Email:</h4>
+  <h3 class="inline-block">
+    <%= @current_user.email %>
+  </h3>
+  <br>
+  <%= link_to  "Plofile Edit", "/users/#{@current_user.id }/edit" ,class:"btn btn-primary" %>
+</div>
